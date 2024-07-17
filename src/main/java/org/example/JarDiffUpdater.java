@@ -5,8 +5,7 @@ import java.util.*;
 
 public class JarDiffUpdater {
 
-    public static void start() throws IOException {
-        String basePath = System.getProperty("basePath", "");
+    public static void start(String basePath) throws IOException {
         String updatePath = FileUtils.processingPath(basePath, "update");
         String targetPath = FileUtils.processingPath(basePath, "target");
         List<String> updateNameList = PathFinder.findUpdateName(updatePath);

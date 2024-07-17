@@ -99,6 +99,9 @@ public class FileUtils {
      * 格式路径
      */
     public static String processingPath(String path, String fileName) {
+        if (path == null || path.isEmpty()) {
+            return fileName;
+        }
         path = path.replace("\\", "/");
         boolean end = path.endsWith("/");
         boolean start = fileName.startsWith("/");

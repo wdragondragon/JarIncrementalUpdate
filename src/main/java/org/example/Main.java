@@ -5,10 +5,11 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) throws IOException {
         String mode = System.getProperty("mode");
+        String basePath = System.getProperty("basePath", "");
         if ("update".equalsIgnoreCase(mode)) {
-            JarDiffUpdater.start();
+            JarDiffUpdater.start(basePath);
         } else {
-            JarDiffExtractor.start();
+            JarDiffExtractor.start(basePath);
         }
     }
 }

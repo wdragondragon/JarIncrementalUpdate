@@ -14,8 +14,8 @@ public class PathDiffExtractor {
     public static void start(String sourceDir, String targetDir, String updateDir) throws IOException {
         FileUtils.clearDirectory(updateDir);
         // 获取两个目录中的文件列表
-        Set<String> files1 = FileUtils.listFiles(targetDir);
-        Set<String> files2 = FileUtils.listFiles(sourceDir);
+        Set<String> files1 = FileUtils.listFiles(sourceDir);
+        Set<String> files2 = FileUtils.listFiles(targetDir);
 
         // 计算新增文件、变更文件和删除文件
         Set<String> addedFiles = new HashSet<>(files2);

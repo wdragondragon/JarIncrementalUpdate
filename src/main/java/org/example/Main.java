@@ -8,6 +8,8 @@ public class Main {
         String basePath = System.getProperty("basePath", "");
         if ("update".equalsIgnoreCase(mode)) {
             JarDiffUpdater.start(basePath);
+        } else if ("path".equalsIgnoreCase(mode)) {
+            PathDiffExtractor.start(basePath);
         } else {
             JarDiffExtractor.start(basePath);
         }

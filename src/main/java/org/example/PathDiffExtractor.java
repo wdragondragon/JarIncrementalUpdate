@@ -8,9 +8,26 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class PathDiffExtractor {
+    public static void start(String basePath) throws IOException {
+        String sourcePath = FileUtils.processingPath(basePath, "source");
+        String updatePath = FileUtils.processingPath(basePath, "update");
+        List<String> pathList = PathFinder.findUpdateName(sourcePath);
+        for (String path : pathList) {
+            if (path.endsWith("_old")) {
+                continue;
+            }
+            String newPath = FileUtils.processingPath(sourcePath, path);
+            String oldPath = FileUtils.processingPath(sourcePath, path + "_old");
+            String targetDir = FileUtils.processingPath(updatePath, path);
+            // 获取两个目录中的文件列表
+            PathDiffExtractor.start(oldPath, newPath, targetDir);
+        }
+    }
+
     public static void start(String sourceDir, String targetDir, String updateDir) throws IOException {
         FileUtils.clearDirectory(updateDir);
         // 获取两个目录中的文件列表
